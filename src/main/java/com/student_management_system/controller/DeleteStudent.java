@@ -23,20 +23,13 @@ public class DeleteStudent extends HttpServlet {
 		Admin admin = (Admin) session.getAttribute("admin");
 		
 		if(admin!=null) {
-		
 		String StudentId = (String) req.getParameter("studentId");
-		
 		int id = Integer.parseInt(StudentId);
-		
 		StudentDao dao = new StudentDao();
-		
 		dao.deleteStudent(id);
-		
 		List<Student> students = dao.getAllStudents(admin);
 		req.setAttribute("students", students);
-		
 		req.getRequestDispatcher("ViewStudents.jsp").forward(req, resp);
-		
 		}else {
 			resp.sendRedirect("AdminLogin.jsp");
 		}
